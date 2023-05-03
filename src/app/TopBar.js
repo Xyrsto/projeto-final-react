@@ -16,7 +16,6 @@ class TopBar extends Component
                             <div class="nav-item nav-link display-1 text-light">Account</div>
                         </div>
                     </div>
-
                 </nav>
             </div>          
         )
