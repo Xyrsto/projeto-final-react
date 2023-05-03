@@ -1,14 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
 import './MainPage.css';
-import TopBar from './app/TopBar';
+import MainScreen from './app/MainScreen.js';
 
 function App() {
   return (
     <div className="App">    
       <header className="App-header">
-          <TopBar/>
-          <div class = "d-inline"></div>              
+          <MainScreen/>           
       </header>
     </div>
   );
