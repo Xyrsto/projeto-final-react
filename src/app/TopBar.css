@@ -12,8 +12,26 @@
 {
     padding-left: 10px;
     padding-top: 10px;
-    width:  300px;
-    height: 400px;
+    width:  250px;
+    height: 330px;
     object-fit: cover;
+    border-radius: 5%;
     filter: drop-shadow(3px 7px 5px #000);
+    filter:saturate(0%);
 }
+
+.filmes:hover
+{
+    animation-name: de-saturate;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+@keyframes de-saturate {
+	0% {  }
+	100% { filter: saturate(90%); }		
+}
+
+  
