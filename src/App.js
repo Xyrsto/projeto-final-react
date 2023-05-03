@@ -5,9 +5,10 @@ import TopBar from './app/TopBar';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App">    
       <header className="App-header">
-        <TopBar/>
+          <TopBar/>
+          <div class = "d-inline"></div>              
       </header>
     </div>
   );
