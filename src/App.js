@@ -1,6 +1,5 @@
 import './App.css';
 import './MainPage.css';
-import Screens from './app/Screens.js';
 import MainScreen from './app/MainScreen.js';
 import Movies from './app/Movies.js';
 import Series from './app/Series.js';

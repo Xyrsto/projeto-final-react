@@ -45,5 +45,10 @@
     border-bottom: 2px solid rgba(255, 255, 255, 0);
 }
 
+.loginScreen{
+    padding-top: 150px;
+    margin: 0px auto;
+    width: 500px;
+}
 
   
