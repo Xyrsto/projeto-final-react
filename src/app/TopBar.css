@@ -34,4 +34,19 @@
 	100% { filter: saturate(90%); }		
 }
 
+.activePage:hover
+{
+    cursor: pointer;
+    border-bottom: 2px solid white;
+    transition-duration: 0.2s;
+}
+
+.activePage{
+    border-bottom: 2px solid rgba(255, 255, 255, 0);
+}
+
+.Links{
+    textDecoration: "none";
+}
+
   

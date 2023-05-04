@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './TopBar.css';
+import {Link} from 'react-router-dom';
+
 
 
 class TopBar extends Component
@@ -11,12 +13,20 @@ class TopBar extends Component
                 <div class="row w-100">
                     <div class="col-2 ps-4 align-self-center">
                         <div class="row">
-                            <div class="col-4 p-2 m-1 small">Movies</div>
-                            <div class="col-4 p-2 m-1 small border-start">Series</div>  
+                            <div class="col-4 p-2 m-1 small">
+                                <Link to = '/movies' style={{ textDecoration: 'none', color: 'white'}}><span class = "activePage">Movies</span></Link>
+                            </div>
+                            <div class="col-4 p-2 m-1 small border-start">
+                                <Link to = '/series' style={{ textDecoration: 'none', color: 'white'}}><span class = "activePage">Series</span></Link>
+                            </div>  
                         </div>                              
                     </div>
-                    <div class="col align-self-center">ShowSpot</div>
-                    <div class="col-2 pe-4 text-end small align-self-center">Account</div>
+                    <div class="col align-self-center">
+                        <Link to = '/' style={{ textDecoration: 'none', color: 'white'}}><span class = "activePage">ShowSpot</span></Link>
+                    </div>
+                    <div class="col-2 pe-4 text-end small align-self-center">
+                        <Link to = '/account' style={{ textDecoration: 'none', color: 'white'}}><span class = "activePage">Account</span></Link>
+                    </div>
                 </div>
             </nav>
         )
