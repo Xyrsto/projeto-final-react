@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './TopBar.css';
 import TopBar from './TopBar';
+import AllMovies from './AllMovies';
 
 
 class Movies extends Component 
@@ -9,7 +10,7 @@ class Movies extends Component
         return(
             <div class = "fixed-top container-fluid  p-0">
                 <TopBar/>
-                <h1>Ola</h1>
+                <AllMovies/>
             </div>
         )
     }

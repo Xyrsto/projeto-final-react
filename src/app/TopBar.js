@@ -24,8 +24,15 @@ class TopBar extends Component
                     <div class="col align-self-center">
                         <Link to = '/' style={{ textDecoration: 'none', color: 'white'}}><span class = "activePage">ShowSpot</span></Link>
                     </div>
-                    <div class="col-2 pe-4 text-end small align-self-center">
-                        <Link to = '/account' style={{ textDecoration: 'none', color: 'white'}}><span class = "activePage">Account</span></Link>
+                    <div class="col-2 text-end small align-self-center">
+                        <div class="row justify-content-end">
+                            <div class="col-4 p-2 m-1 small">
+                                <Link to = '/login' style={{ textDecoration: 'none', color: 'white'}}><span class = "activePage">Login</span></Link>
+                            </div>
+                            <div class="col-4 p-2 m-1 small border-start">
+                                <Link to = '/register' style={{ textDecoration: 'none', color: 'white'}}><span class = "activePage">Register</span></Link>
+                            </div>    
+                        </div>               
                     </div>
                 </div>
             </nav>

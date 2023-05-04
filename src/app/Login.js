@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import './TopBar.css';
 import TopBar from './TopBar';
-import AllSeries from './AllSeries';
 
 
-class Series extends Component 
+class Login extends Component 
 {
     render(){
         return(
             <div class = "fixed-top container-fluid  p-0">
                 <TopBar/>
-                <AllSeries/>
+                <div class = "row">
+                    <div class = "col-12">
+                        <h1>Login</h1>	
+                    </div>
+                </div>
             </div>
         )
     }
 }
 
-export default Series;
+export default Login;

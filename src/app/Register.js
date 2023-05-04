@@ -3,16 +3,20 @@ import './TopBar.css';
 import TopBar from './TopBar';
 
 
-class Accounts extends Component 
+class Register extends Component 
 {
     render(){
         return(
             <div class = "fixed-top container-fluid  p-0">
                 <TopBar/>
-                <h1>contapica</h1>
+                <div class = "row">
+                    <div class = "col-12">
+                        <h1>Register</h1>	
+                    </div>
+                </div>
             </div>
         )
     }
 }
 
-export default Accounts;
+export default Register;
