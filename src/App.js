@@ -1,10 +1,10 @@
 import './App.css';
 import './MainPage.css';
-import MainScreen from './app/MainScreen.js';
-import Movies from './app/Movies.js';
-import Series from './app/Series.js';
-import Login from './app/Login.js';
-import Register from './app/Register.js';
+import MainScreen from './app/Views/MainScreen.js';
+import Movies from './app/Views/Movies.js';
+import Series from './app/Views/Series.js';
+import Login from './app/Views/Login.js';
+import Register from './app/Views/Register.js';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 function App() {

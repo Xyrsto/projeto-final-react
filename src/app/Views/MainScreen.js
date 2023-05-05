@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './TopBar.css';
-import HotMovies from './HotMovies.js';
-import TopBar from './TopBar.js';
-import Recomended from './Recomended.js';
+import HotMovies from '../HotMovies.js';
+import TopBar from '../TopBar.js';
+import Recomended from '../Recomended.js';
 
 class MainScreen extends Component
 {

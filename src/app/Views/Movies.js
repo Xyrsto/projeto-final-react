@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import './TopBar.css';
-import TopBar from './TopBar';
-import AllSeries from './AllSeries';
+import TopBar from '../TopBar';
+import AllMovies from '../AllMovies';
 
 
-class Series extends Component 
+class Movies extends Component 
 {
     render(){
         return(
             <div class = "fixed-top container-fluid  p-0">
                 <TopBar/>
-                <AllSeries/>
+                <AllMovies/>
             </div>
         )
     }
 }
 
-export default Series;
+export default Movies;
