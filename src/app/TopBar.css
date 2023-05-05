@@ -46,9 +46,18 @@
 }
 
 .loginScreen{
-    padding-top: 150px;
-    margin: 0px auto;
+    
+    margin: 150px auto;
     width: 500px;
+    padding: 20px 20px 20px 20px;
+    border:#000000 solid 1px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.loginRegisterFont
+{
+    color: #292929;
 }
 
   

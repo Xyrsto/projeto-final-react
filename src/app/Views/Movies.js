@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './TopBar.css';
+import '../TopBar.css';
 import TopBar from '../TopBar';
 import AllMovies from '../AllMovies';
 
