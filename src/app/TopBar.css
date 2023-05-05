@@ -37,9 +37,21 @@
 .activePage:hover
 {
     cursor: pointer;
-    border-bottom: 2px solid white;
-    transition-duration: 0.2s;
 }
+
+a:hover
+{
+    background-color:#aaa;
+    border-radius: 2px;
+    color:white;
+}
+
+a:active{
+    background-color:#292929;
+    border-radius: 2px;
+    color:white;
+}
+
 
 .activePage{
     border-bottom: 2px solid rgba(255, 255, 255, 0);
