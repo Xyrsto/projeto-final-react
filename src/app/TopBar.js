@@ -14,10 +14,20 @@ class TopBar extends Component
                     <div class="col-2 ps-4 align-self-center">
                         <div class="row">
                             <div class="col-4 p-2 m-1 small">
-                                <Link to = '/movies' style={{ textDecoration: 'none', color: 'white'}}><span id = "movieSpan" class = "activePage">Movies</span></Link>
+                                {window.location.href.includes('movies') 
+                                    ?
+                                    <Link to = '/movies' style={{ textDecoration: 'none', color: 'red', borderBottom: '1px solid red'}}><span id = "movieSpan" class = "activePage">Movies</span></Link>
+                                    :
+                                    <Link to = '/movies' style={{ textDecoration: 'none', color: 'white'}}><span id = "movieSpan" class = "activePage">Movies</span></Link>             
+                                }                  
                             </div>
                             <div class="col-4 p-2 m-1 small border-start">
-                                <Link to = '/series' style={{ textDecoration: 'none', color: 'white'}}><span class = "activePage">Series</span></Link>
+                                {window.location.href.includes('series') 
+                                    ?
+                                    <Link to = '/series' style={{ textDecoration: 'none', color: 'red', borderBottom: '1px solid red'}}><span class = "activePage">Series</span></Link>
+                                    :
+                                    <Link to = '/series' style={{ textDecoration: 'none', color: 'white'}}><span class = "activePage">Series</span></Link>
+                                }       
                             </div>  
                         </div>                              
                     </div>
@@ -27,10 +37,20 @@ class TopBar extends Component
                     <div class="col-2 text-end small align-self-center">
                         <div class="row justify-content-end">
                             <div class="col-4 p-2 m-1 small">
-                                <Link to = '/login' style={{ textDecoration: 'none', color: 'white'}}><span class = "activePage">Login</span></Link>
+                                {window.location.href.includes('login') 
+                                    ?
+                                    <Link to = '/login' style={{ textDecoration: 'none', color: 'red', borderBottom: '1px solid red'}}><span class = "activePage">Login</span></Link>
+                                    :
+                                    <Link to = '/login' style={{ textDecoration: 'none', color: 'white'}}><span class = "activePage">Login</span></Link>
+                                }
                             </div>
                             <div class="col-4 p-2 m-1 small border-start">
+                                {window.location.href.includes('register') 
+                                ?
+                                <Link to = '/register' style={{ textDecoration: 'none', color: 'red', borderBottom: '1px solid red'}}><span class = "activePage">Register</span></Link>
+                                :
                                 <Link to = '/register' style={{ textDecoration: 'none', color: 'white'}}><span class = "activePage">Register</span></Link>
+                                }
                             </div>    
                         </div>               
                     </div>

@@ -10,7 +10,7 @@ class MainScreen extends Component
     {
         return(
             <div>
-                <div class = "fixed-top container-fluid  p-0">
+                <div class = "fixed-top container-fluid  p-0" style={{maxHeight:"100%", overflow: 'auto'}}>
                     <TopBar/>
                     <HotMovies/>
                     <Recomended/>
