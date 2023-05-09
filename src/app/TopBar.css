@@ -83,4 +83,21 @@ a:active{
     color: #292929;
 }
 
+.profileImage{
+    width: 140px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 100%;
+    filter: drop-shadow(0px 0px 10px #000);
+    display:block;
+    margin: 0px auto;
+}
+
+.library
+{
+    text-align: center;
+    font-size: 30px;
+    color: #292929;
+}
+
   
