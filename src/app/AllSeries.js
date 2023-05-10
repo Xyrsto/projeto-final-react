@@ -5,7 +5,7 @@ class AllSeries extends Component
 {
     render(){
         return(
-            <div class = "container-fluid p-0">
+            <div class = "container-fluid p-0" style={{overflow: 'hidden'}}>
                 <div class = "row">
                     <div class = "mt-3 pt-2 pb-3">
                         <h1 class = "loginRegisterFont">Drama</h1>

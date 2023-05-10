@@ -8,7 +8,7 @@ class Series extends Component
 {
     render(){
         return(
-            <div class = "fixed-top container-fluid  p-0" style={{maxHeight:"100%", overflowY: 'auto'}}>
+            <div class = "fixed-top container-fluid  p-0" style={{maxHeight:"100%", overflowY: 'auto', maxWidth: "100%"}}>
                 <TopBar/>
                 <AllSeries/>
             </div>
