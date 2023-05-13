@@ -3,10 +3,11 @@ import './TopBar.css';
 
 class AllSeries extends Component 
 {
-    state = { listaSeries: []}
+    state = { listaSeries: [], listaTags: []}
 
     componentDidMount(){
         this.buscarSeries();
+        this.buscarTags();
     }
 
     async buscarSeries(){
@@ -26,7 +27,27 @@ class AllSeries extends Component
         console.log(this.state.listaSeries);
     }
 
-    render(){
+    async buscarTags()
+    {
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow',
+            header:{
+                'Access-Control-Allow-Origin':'*'
+            }
+        };
+
+        await fetch('https://localhost:7110/api/ConteudosAPI/nomeTags', requestOptions)
+            .then(res => res.json())
+            .then(result => this.setState({listaTags: result.value}))
+            .catch(error => console.log('error', error));
+
+        console.log(this.state.listaTags);
+    }
+
+    //esta função gera o div para cada série. Ainda não gera dependedo da tag.
+    htmlSeries()
+    {
         let htmlSeries = []
 
         //as classes foram reaproveitadas do allmovies, visto que o estilo para cada série é o mesmo.
@@ -41,16 +62,35 @@ class AllSeries extends Component
                 </div>
             ) 
         );
+
+        return htmlSeries;
+    }
+
+    //esta função gera os divs que contêm as séries para cada nome de cada tag. As séries geradas ainda não são filtradas por tag.
+    generateDivs()
+    {
+        let htmlDivs = []
+        let htmlSeries = this.htmlSeries();
+        this.state.listaTags.forEach(element =>
+            htmlDivs.push(
+                <div class = "mt-3 pt-2 pb-3">
+                        <h1 class = "loginRegisterFont">{element.nome}</h1>
+                        <div class="all_filmes d-flex justify-content-center">
+                            {htmlSeries}
+                        </div>                     
+                    </div>     
+            )    
+        );
+
+        return htmlDivs;
+    }
+
+    render(){
+        let htmlDivs = this.generateDivs();
         return(
             <div class = "container-fluid p-0" style={{overflow: 'hidden'}}>
                 <div class = "row" style={{maxHeight: "100%"}}>
-                    <div class = "mt-3 pt-2 pb-3">
-                        <h1 class = "loginRegisterFont">Drama</h1>
-                        <div class="all_filmes d-flex justify-content-center">
-                            {htmlSeries}
-                        </div>
-                        
-                    </div>
+                    {htmlDivs}
                 </div>
             </div>
         )

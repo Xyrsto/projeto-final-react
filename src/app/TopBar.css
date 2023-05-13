@@ -11,6 +11,7 @@
 
 .filmes
 {
+    padding-left: 5px;
     width:  250px;
     height: 330px;
     object-fit: cover;

@@ -3,10 +3,11 @@ import './TopBar.css';
 
 class AllMovies extends Component 
 {
-    state = { listaFilmes: []}
+    state = { listaFilmes: [], listaTags: []}
 
     componentDidMount(){
         this.buscarFilmes();
+        this.buscarTags();
     }
 
     async buscarFilmes(){
@@ -26,8 +27,27 @@ class AllMovies extends Component
         console.log(this.state.listaFilmes);
     }
 
+    async buscarTags()
+    {
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow',
+            header:{
+                'Access-Control-Allow-Origin':'*'
+            }
+        };
 
-    render(){
+        await fetch('https://localhost:7110/api/ConteudosAPI/nomeTags', requestOptions)
+            .then(res => res.json())
+            .then(result => this.setState({listaTags: result.value}))
+            .catch(error => console.log('error', error));
+
+        console.log(this.state.listaTags);
+    }
+
+    //esta função gera o div para cada filme. Ainda não gera dependedo da tag.
+    htmlFilmes()
+    {
         let htmlFilmes = []
 
         this.state.listaFilmes.forEach(element =>
@@ -41,15 +61,35 @@ class AllMovies extends Component
                 </div>
             ) 
         );
-        return(
-            <div class = "container-fluid p-0" style={{overflow: 'hidden'}}>
-                <div class = "row" style={{maxHeight: "100%"}}>
-                    <div class = "mt-3 pt-2 pb-3">
-                        <h1 class = "loginRegisterFont">Drama</h1>
+        return htmlFilmes;
+    }
+
+    //esta função gera os divs que contêm os filmes para cada nome de cada tag. Os filmes dentro deles ainda não estão filtrados por tag.
+    generateDivs()
+    {
+        let htmlDivs = []
+        let htmlFilmes = this.htmlFilmes();
+        this.state.listaTags.forEach(element =>
+            htmlDivs.push(
+                <div class = "mt-3 pt-2 pb-3">
+                        <h1 class = "loginRegisterFont">{element.nome}</h1>
                         <div class="all_filmes d-flex justify-content-center">
                             {htmlFilmes}
                         </div>                     
-                    </div>             
+                    </div>     
+            )    
+        );
+
+        return htmlDivs;
+    }
+
+    render(){
+        
+        let htmlDivs = this.generateDivs();
+        return(
+            <div class = "container-fluid p-0" style={{overflow: 'hidden'}}>
+                <div class = "row" style={{maxHeight: "100%"}}>
+                    {htmlDivs}      
                 </div>
             </div>
         )
