@@ -14,7 +14,6 @@ class MainScreen extends Component
                     <TopBar/>
                     <HotMovies/>
                     <Recomended/>
-                    <Recomended/>
                 </div>             
             </div>
                            

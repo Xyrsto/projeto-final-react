@@ -53,7 +53,7 @@ class AllSeries extends Component
 
         //as classes foram reaproveitadas do allmovies, visto que o estilo para cada série é o mesmo.
         this.state.listaSeries.forEach(element => {
-            if(element.tag == tagFilter){
+            if(element.tag === tagFilter){
                 htmlSeries.push(
                     <div class="filmeCard">
                         <img class = "filmes" alt = "filme" src = { element.imgUrl } title={element.nome}/>

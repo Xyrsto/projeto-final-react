@@ -65,7 +65,7 @@ class AllMovies extends Component
         let htmlFilmes = []
 
         this.state.listaFilmes.forEach(element => {
-            if (element.tag == tagFilter) {
+            if (element.tag === tagFilter) {
                 htmlFilmes.push(
                     <div class="filmeCard">
                         <img class = "filmes" alt = "filme" src = { element.imgUrl } title={element.nome}/>
