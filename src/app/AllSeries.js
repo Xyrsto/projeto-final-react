@@ -3,11 +3,12 @@ import './TopBar.css';
 
 class AllSeries extends Component 
 {
-    state = { listaSeries: [], listaTags: []}
+    state = { listaSeries: [], listaTags: [], htmlCont: []}
 
-    componentDidMount(){
-        this.buscarSeries();
-        this.buscarTags();
+    async componentDidMount(){
+        await this.buscarSeries();
+        await this.buscarTags();
+        this.generateDivs();
     }
 
     async buscarSeries(){
@@ -46,21 +47,23 @@ class AllSeries extends Component
     }
 
     //esta função gera o div para cada série. Ainda não gera dependedo da tag.
-    htmlSeries()
+    htmlSeries(tagFilter)
     {
         let htmlSeries = []
 
         //as classes foram reaproveitadas do allmovies, visto que o estilo para cada série é o mesmo.
-        this.state.listaSeries.forEach(element =>
-            htmlSeries.push(
-                <div class="filmeCard">
-                    <img class = "filmes" alt = "filme" src = { element.imgUrl } title={element.nome}/>
-                    <div class="filme-overlay">
-                        <strong>{element.nome}</strong>
-                        <span class="position-absolute bottom-0 fs-5 mb-2" style={{left: "0px", right: "0px"}}>{element.rating}</span>
+        this.state.listaSeries.forEach(element => {
+            if(element.tag == tagFilter){
+                htmlSeries.push(
+                    <div class="filmeCard">
+                        <img class = "filmes" alt = "filme" src = { element.imgUrl } title={element.nome}/>
+                        <div class="filme-overlay">
+                            <strong>{element.nome}</strong>
+                            <span class="position-absolute bottom-0 fs-5 mb-2" style={{left: "0px", right: "0px"}}>{element.rating}</span>
+                        </div>
                     </div>
-                </div>
-            ) 
+                )
+            }}
         );
 
         return htmlSeries;
@@ -70,27 +73,28 @@ class AllSeries extends Component
     generateDivs()
     {
         let htmlDivs = []
-        let htmlSeries = this.htmlSeries();
-        this.state.listaTags.forEach(element =>
+        let seriesDiv = ''
+
+        this.state.listaTags.forEach(element => {
+            seriesDiv = this.htmlSeries(element.nome)
             htmlDivs.push(
                 <div class = "mt-3 pt-2 pb-3">
                         <h1 class = "loginRegisterFont">{element.nome}</h1>
                         <div class="all_filmes d-flex justify-content-center">
-                            {htmlSeries}
+                            {seriesDiv}
                         </div>                     
                     </div>     
-            )    
+            )}  
         );
 
-        return htmlDivs;
+        this.setState({htmlCont: htmlDivs})
     }
 
     render(){
-        let htmlDivs = this.generateDivs();
         return(
             <div class = "container-fluid p-0" style={{overflow: 'hidden'}}>
                 <div class = "row" style={{maxHeight: "100%"}}>
-                    {htmlDivs}
+                    {this.state.htmlCont}
                 </div>
             </div>
         )

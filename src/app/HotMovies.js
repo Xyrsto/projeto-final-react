@@ -3,14 +3,58 @@ import './TopBar.css';
 
 class HotMovies extends Component
 {
+    state = {listaFilmes: [], htmlCont: []}
+
+    async componentDidMount(){
+        await this.buscarFilmes();
+        this.htmlFilmes();
+    }
+
+    async buscarFilmes(){
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow',
+            header:{
+                'Access-Control-Allow-Origin':'*'
+            }
+        };
+
+        await fetch('https://localhost:7110/api/ConteudosAPI/filmes', requestOptions)
+            .then(res => res.json())
+            .then(result => this.setState({listaFilmes: result.value}))
+            .catch(error => console.log('error', error));
+    }
+
+    htmlFilmes()
+    {
+        let htmlFilmes = []
+
+        this.state.listaFilmes.forEach(element => {
+                htmlFilmes.push(
+                    <div class="filmeCard">
+                        <img class = "filmes" alt = "filme" src = { element.imgUrl } title={element.nome}/>
+                        <div class="filme-overlay">
+                            <strong>{element.nome}</strong>
+                            <span class="position-absolute bottom-0 fs-5 mb-2" style={{left: "0px", right: "0px"}}>{element.rating}</span>
+                        </div>
+                    </div>
+                ) 
+            }
+        );
+
+
+        console.log(htmlFilmes);
+        this.setState({htmlCont: htmlFilmes})
+    }
+
     render(){
         return(
             <div class = "row pt-4">
                 <h1 class = "loginRegisterFont">Hot Movies</h1>
                 <div className = "filme" class = "text-center">
-                    <img class = "filmes" alt = "filme" src = "https://cdn.shopify.com/s/files/1/0057/3728/3618/products/scream-vi_bevzvyks_480x.progressive.jpg?v=1676559336"></img>
-                    <img class = "filmes" alt = "filme" src = "https://cdn.shopify.com/s/files/1/0057/3728/3618/products/4c177c2b7f7bb9a679f089bcb50f844e_3e89eb5d-ffbd-4033-a00f-e595a3ef2e2a_240x360_crop_center.progressive.jpg?v=1573587540"></img>
-                    <img class = "filmes" alt = "filme" src = "https://sm.ign.com/t/ign_za/gallery/s/spider-man/spider-man-far-from-home-official-movie-posters_ex7e.1080.jpg"></img>
+                    <div class="all_filmes d-flex justify-content-center">
+                    {this.state.htmlCont}
+                    </div>                     
                 </div>
             </div>      
         )
