@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import '../TopBar.css';
-import LoggedTopBar from './LoggedTopBar.js';
+import TopBar from '../TopBar';
 
 class Library extends Component 
 {
     render(){
         return(
             <div class = "fixed-top container-fluid  p-0" style={{maxHeight:"100%"}}>
-                <LoggedTopBar/>
+                <TopBar/>
                 <div class = "container-fluid p-0">
                     <div class = "row" style={{maxHeight: "100%"}}>
                         <div class = "mt-3 pt-2 pb-3">

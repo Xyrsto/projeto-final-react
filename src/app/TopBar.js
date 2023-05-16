@@ -5,7 +5,29 @@ import {Link} from 'react-router-dom';
 
 
 class TopBar extends Component
-{
+{    
+    state = { loggedUser: ''}
+
+    componentDidMount(){
+        this.getUser();
+    }
+
+    async getUser(){
+        var requestOptions = {
+            method: 'GET',
+            credentials: 'include',
+            header:{
+                'Access-Control-Allow-Origin':'*'
+            }
+          };
+
+         // Make the fetch request
+         await fetch('https://localhost:7110/api/ConteudosAPI/getUser', requestOptions)
+         .then(res => res.json())
+         .then(result => this.setState({loggedUser: result.value}))
+         .catch(error => console.log('error', error));
+    }
+
     render()
     {
         return(
@@ -35,24 +57,41 @@ class TopBar extends Component
                         <Link to = '/' style={{ textDecoration: 'none', color: 'white'}}><span class = "activePage">ShowSpot</span></Link>
                     </div>
                     <div class="col-2 text-end small align-self-center">
-                        <div class="row justify-content-end">
-                            <div class="col-4 p-2 m-1 small">
-                                {window.location.href.includes('login') 
+                            {this.state.loggedUser == null 
+                            ?
+                                <div class="row justify-content-end">
+                                    <div class="col-4 p-2 m-1 small">
+                                        {window.location.href.includes('login') 
+                                            ?
+                                            <Link to = '/login' style={{ textDecoration: 'none', color: 'red', borderBottom: '1px solid red'}}><span class = "activePage">Login</span></Link>
+                                            :
+                                            <Link to = '/login' style={{ textDecoration: 'none', color: 'white'}}><span class = "activePage">Login</span></Link>
+                                        }
+                                    </div>
+                                    <div class="col-4 p-2 m-1 small border-start">
+                                        {window.location.href.includes('register') 
+                                        ?
+                                        <Link to = '/register' style={{ textDecoration: 'none', color: 'red', borderBottom: '1px solid red'}}><span class = "activePage">Register</span></Link>
+                                        :
+                                        <Link to = '/register' style={{ textDecoration: 'none', color: 'white'}}><span class = "activePage">Register</span></Link>
+                                        }
+                                    </div>
+                                </div>
+                            :
+                            <div class="row justify-content-end">
+                                <div class="col-6 p-2 m-1 small">
+                                    <span class = "activePage" style={{ textDecoration: 'none', color: 'white'}}>{this.state.loggedUser}</span>
+                                </div>
+                                <div class="col-4 p-2 m-1 small border-start">
+                                    {window.location.href.includes('library') 
                                     ?
-                                    <Link to = '/login' style={{ textDecoration: 'none', color: 'red', borderBottom: '1px solid red'}}><span class = "activePage">Login</span></Link>
+                                    <Link to = '/library' style={{ textDecoration: 'none', color: 'red', borderBottom: '1px solid red'}}><span class = "activePage">Library</span></Link>
                                     :
-                                    <Link to = '/login' style={{ textDecoration: 'none', color: 'white'}}><span class = "activePage">Login</span></Link>
-                                }
+                                    <Link to = '/library' style={{ textDecoration: 'none', color: 'white'}}><span class = "activePage">Library</span></Link>
+                                    }
+                                </div>    
                             </div>
-                            <div class="col-4 p-2 m-1 small border-start">
-                                {window.location.href.includes('register') 
-                                ?
-                                <Link to = '/register' style={{ textDecoration: 'none', color: 'red', borderBottom: '1px solid red'}}><span class = "activePage">Register</span></Link>
-                                :
-                                <Link to = '/register' style={{ textDecoration: 'none', color: 'white'}}><span class = "activePage">Register</span></Link>
-                                }
-                            </div>    
-                        </div>               
+                            }              
                     </div>
                 </div>
             </nav>
