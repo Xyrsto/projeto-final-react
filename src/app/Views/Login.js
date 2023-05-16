@@ -5,23 +5,37 @@ import TopBar from '../TopBar';
 
 class Login extends Component 
 {
-    async login(email, password) {
-        var requestOptions = {
-            method: 'GET',
+    async login(username,email, password) {
+        const requestOptions = {
+            method: 'POST',
             credentials: 'include',
-            header:{
-                'Access-Control-Allow-Origin':'*'
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({username, email, password })
+          };
+        
+          try {
+            const response = await fetch('https://localhost:7110/api/ConteudosAPI/login', requestOptions);
+            const data = await response.json();
+        
+            if (response.ok) 
+            {
+              console.log('Login successful');
+              // Perform any additional actions after successful login
+            } 
+            else 
+            {
+              console.log('Login failed', data);
+              // Handle login failure, display error message, etc.
             }
-        };
-
-        await fetch('https://localhost:7110/api/ConteudosAPI/login/'+email+"/"+password, requestOptions)
-            .then(res => res.json())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
-
+          } 
+          catch (error) {
+            console.log('Error:', error);
+            // Handle network or other errors
+          }
         window.location.href='/'
     }
-
     
     render(){        
         return(
@@ -36,9 +50,9 @@ class Login extends Component
                         </div>
                         <div class = "form-group pt-5 pb-5">
                             <h3 class = "loginRegisterFont">Password</h3>    
-                            <input type="email" class="form-control" id="password" aria-describedby="emailHelp" placeholder="Enter password"></input>                    
+                            <input type="password" class="form-control" id="password" aria-describedby="emailHelp" placeholder="Enter password"></input>                    
                         </div>
-                        <button type="submit" class="btn btn-secondary" onClick={() => this.login(document.getElementById('email').value, document.getElementById('password').value)}>Login!</button>
+                        <button type="submit" class="btn btn-secondary" onClick={() => this.login("",document.getElementById('email').value, document.getElementById('password').value)}>Login!</button>
                     </div>
                 </div>                  
             </div>
