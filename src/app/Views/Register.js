@@ -5,6 +5,7 @@ import TopBar from '../TopBar';
 
 class Register extends Component 
 {
+    //POST para registar um utilizador no servidor.
     async register(username, email, password) {
         var requestOptions = {
             method: 'POST',

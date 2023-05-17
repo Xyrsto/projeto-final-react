@@ -12,6 +12,7 @@ class TopBar extends Component
         this.getUser();
     }
 
+    //GET para ir buscar o utilizador logado ao servidor e atualizar o estado com o utilizador.
     async getUser(){
         var requestOptions = {
             method: 'GET',
@@ -81,7 +82,13 @@ class TopBar extends Component
                             :
                             <div class="row justify-content-end">
                                 <div class="col-6 p-2 m-1 small">
-                                    <span class = "activePage" style={{ textDecoration: 'none', color: 'white'}}>{this.state.loggedUser}</span>
+                                {window.location.href.includes('userpage') 
+                                    ?
+                                    <Link to = '/userpage' style={{ textDecoration: 'none', color: 'red', borderBottom: '1px solid red'}}><span class = "activePage">{this.state.loggedUser}</span></Link>
+                                    :
+                                    <Link to = '/userpage' style={{ textDecoration: 'none', color: 'white'}}><span class = "activePage">{this.state.loggedUser}</span></Link>
+                                    }
+                                    <Link></Link>
                                 </div>
                                 <div class="col-4 p-2 m-1 small border-start">
                                     {window.location.href.includes('library') 

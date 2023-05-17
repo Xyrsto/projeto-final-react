@@ -10,6 +10,7 @@ class HotMovies extends Component
         this.htmlFilmes();
     }
 
+    //GET para ir buscar o filmes ao servidor e atualizar o estado com os filmes.
     async buscarFilmes(){
         var requestOptions = {
             method: 'GET',
@@ -30,15 +31,18 @@ class HotMovies extends Component
         let htmlFilmes = []
 
         this.state.listaFilmes.forEach(element => {
-                htmlFilmes.push(
-                    <div class="filmeCard">
-                        <img class = "filmes" alt = "filme" src = { element.imgUrl } title={element.nome}/>
-                        <div class="filme-overlay">
-                            <strong>{element.nome}</strong>
-                            <span class="position-absolute bottom-0 fs-5 mb-2" style={{left: "0px", right: "0px"}}>{element.rating}</span>
+                if(element.anoLancamento >= 2022)
+                {
+                    htmlFilmes.push(
+                        <div class="filmeCard">
+                            <img class = "filmes" alt = "filme" src = { element.imgUrl } title={element.nome}/>
+                            <div class="filme-overlay">
+                                <strong>{element.nome}</strong>
+                                <span class="position-absolute bottom-0 fs-5 mb-2" style={{left: "0px", right: "0px"}}>{element.rating}</span>
+                            </div>
                         </div>
-                    </div>
-                ) 
+                    ) 
+                }               
             }
         );
 

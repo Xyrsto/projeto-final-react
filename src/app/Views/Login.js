@@ -5,6 +5,7 @@ import TopBar from '../TopBar';
 
 class Login extends Component 
 {
+    //POST para fazer login no servidor.
     async login(username,email, password) {
         const requestOptions = {
             method: 'POST',
