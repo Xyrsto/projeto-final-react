@@ -9,6 +9,22 @@
     text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em grey;
 }
 
+.filmeHref{
+    margin-right: 10px;
+    margin-bottom: 10px;
+    text-decoration: none !important;
+    color: #fff
+}
+
+.filmeHref:hover{
+    text-decoration: none !important;
+    color: #fff
+}
+
+.filmeHref:active{
+    background-color: transparent !important;
+}
+
 .filmes
 {
     width:  250px;
@@ -30,8 +46,6 @@
 
 .filmeCard{
     position:relative;
-    margin-left: 10px;
-    margin-top: 10px;
 }
 
 .filme-overlay{
@@ -124,6 +138,35 @@ a:active{
     text-align: center;
     font-size: 30px;
     color: #292929;
+}
+
+.contentCard{
+    width: 70vw;
+    height: calc(100vh - 78px - 100px);
+    margin: auto auto !important;
+    margin-top: 50px !important;
+
+
+    color:#292929;
+    border:#000000 solid 1px;
+    background: #FFFFFF;
+    background: -moz-radial-gradient(center, #FFFFFF 0%, #D7D7D7 100%);
+    background: -webkit-radial-gradient(center, #FFFFFF 0%, #D7D7D7 100%);
+    background: radial-gradient(ellipse at center, #FFFFFF 0%, #D7D7D7 100%);
+    border-radius: 5px;
+    backdrop-filter: blur(8px);
+    -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
+    box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+}
+
+.contentCard-left{
+    border-right: solid 1px #292929;
+    height: 100% !important;
+}
+
+.contentCard-left img{
+    width: auto !important;
+    -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
 }
 
   

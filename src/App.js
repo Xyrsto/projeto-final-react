@@ -7,6 +7,7 @@ import Login from './app/Views/Login.js';
 import Register from './app/Views/Register.js';
 import Library from './app/Views/Library.js';
 import UserPage from './app/Views/UserPage.js';
+import SingleContent from './app/Views/SingleContent.js';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
             <Route path="/register" element={<Register/>}/>
             <Route path= "/library" element={<Library/>}/>
             <Route path= "/userpage" element={<UserPage/>}/>
+            <Route path= "/conteudos/*" element={<SingleContent/>}/>
           </Routes>
         </Router>                 
       </header>

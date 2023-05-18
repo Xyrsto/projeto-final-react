@@ -67,13 +67,15 @@ class AllMovies extends Component
         this.state.listaFilmes.forEach(element => {
             if (element.tag === tagFilter) {
                 htmlFilmes.push(
-                    <div class="filmeCard">
-                        <img class = "filmes" alt = "filme" src = { element.imgUrl } title={element.nome}/>
-                        <div class="filme-overlay">
-                            <strong>{element.nome}</strong>
-                            <span class="position-absolute bottom-0 fs-5 mb-2" style={{left: "0px", right: "0px"}}>{element.rating}</span>
+                    <a class="filmeHref" href={`/conteudos/`+element.id}>
+                        <div class="filmeCard">
+                            <img class = "filmes" alt = "filme" src = { element.imgUrl } title={element.nome}/>
+                            <div class="filme-overlay">
+                                <strong>{element.nome}</strong>
+                                <span class="position-absolute bottom-0 fs-5 mb-2" style={{left: "0px", right: "0px"}}>{element.rating}</span>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 ) 
             }}
         );
