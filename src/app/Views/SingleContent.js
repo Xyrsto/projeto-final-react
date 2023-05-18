@@ -50,7 +50,7 @@ class SingleContent extends Component
                     <div class="row m-2 mb-3">Sinopse:</div>
                     <div class="row fs-4 ps-5 pe-5 justify-content-center mb-5">{this.state.movieInfo[0].sinopse}</div>
                     <div class="row justify-content-center mb-5">
-                    <iframe height="500" src="https://www.youtube.com/embed/lJIrF4YjHfQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <iframe height="500" src={this.state.movieInfo[0].linkTrailer} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
