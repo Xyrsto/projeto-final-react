@@ -30,6 +30,7 @@ class Register extends Component
         catch(error){
             console.log('Error:', error);
         }
+        window.location.href='/'
     }
     
 
