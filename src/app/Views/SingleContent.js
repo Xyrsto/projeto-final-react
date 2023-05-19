@@ -44,7 +44,8 @@ class SingleContent extends Component
                     <div class="row fs-6 justify-content-center">Ano lançamento: {this.state.movieInfo[0].anoLancamento}</div>
                     <div class="row fs-6 justify-content-center">Duração: {this.state.movieInfo[0].runtime}</div>
                     <div class="row fs-6 justify-content-center">Rating: {this.state.movieInfo[0].rating}</div>
-                    <div class="row fs-6 justify-content-center">Tag(s): {this.state.movieInfo[0].tag}</div>
+                    <div class="row fs-6 justify-content-center">Tag: {this.state.movieInfo[0].tag}</div>
+                    <div clas = "row fs-6 justify-content-center"><button type="submit" class="btn btn-secondary">Adicionar à biblioteca</button></div>
                 </div>
                 <div class='col contentCard-right'>
                     <div class="row m-2 mb-3">Sinopse:</div>
