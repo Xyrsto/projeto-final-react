@@ -35,7 +35,7 @@ class SingleContent extends Component
     async generateDivs(){
         let html = ''
 
-        // ás vezes não dá render ¯\_(ツ)_/¯ oh well
+        // ás vezes não dá render ¯\_(ツ)_/¯ oh well. edit: gotta love it...
         html=(
             <div class='row contentCard'>
                 <div class='col-4 contentCard-left d-flex flex-column'>
@@ -45,6 +45,8 @@ class SingleContent extends Component
                     <div class="row fs-6 justify-content-center">Duração: {this.state.movieInfo[0].runtime}</div>
                     <div class="row fs-6 justify-content-center">Rating: {this.state.movieInfo[0].rating}</div>
                     <div class="row fs-6 justify-content-center">Tag: {this.state.movieInfo[0].tag}</div>
+
+                    {/*Este botão aqui! ainda não faz nada :^)*/}
                     <div clas = "row fs-6 justify-content-center"><button type="submit" class="btn btn-secondary">Adicionar à biblioteca</button></div>
                 </div>
                 <div class='col contentCard-right'>
