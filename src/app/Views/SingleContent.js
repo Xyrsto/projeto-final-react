@@ -4,11 +4,12 @@ import TopBar from '../TopBar';
 
 class SingleContent extends Component 
 { 
-    state = { contentId: "", movieInfo: {}, htmlCont: ''}
+    state = { contentId: "", movieInfo: {}, htmlCont: '', loggedUser: ''}
 
     async componentDidMount(){
         await this.getId();
         await this.getContentById();
+        await this.getUser();
         this.generateDivs();
     }
 
@@ -18,6 +19,7 @@ class SingleContent extends Component
         await this.setState({contentId: id})
     }
 
+    //GET para buscar a informação de um conteúdo específico, dado o ID
     async getContentById(){
         var requestOptions = {
             method: 'GET',
@@ -32,10 +34,58 @@ class SingleContent extends Component
             .then(result => this.setState({movieInfo: result.value}))
     }
 
+    //GET para ir buscar o utilizador logado ao servidor e atualizar o estado com o utilizador.
+    async getUser(){
+        var requestOptions = {
+            method: 'GET',
+            credentials: 'include',
+            header:{
+                'Access-Control-Allow-Origin':'*'
+            }
+          };
+
+         // Make the fetch request
+         await fetch('/api/ConteudosAPI/getuser', requestOptions)
+         .then(res => res.json())
+         .then(result => this.setState({loggedUser: result.value}))
+         .catch(error => console.log('error', error));
+         console.log(this.state.loggedUser);
+    }
+
+
+    //POST para adicionar um conteúdo à biblioteca de favoritos de um utilizador
+    async addFavorito(idFilme, username){
+        var formData = new FormData();
+        formData.append("idFilme", idFilme);
+        formData.append("username", username);
+
+        var requestOptions = {
+            method: 'POST',
+            redirect: 'follow',
+            body: formData
+        };
+        try
+        {
+            const response = await fetch('/api/ConteudosAPI/addFavorito', requestOptions)
+            const data = await response.json();
+
+            if(response.ok){
+                console.log("SUCESSO");
+                window.location.href='/movies'
+            }
+            else{
+                console.log("ERRO ", data);
+            }
+        }
+        catch(error){
+            console.log('Error:', error);
+        }
+    }
+
     async generateDivs(){
         let html = ''
 
-        // ás vezes não dá render ¯\_(ツ)_/¯ oh well. edit: gotta love it...
+        // ás vezes não dá render ¯\_(ツ)_/¯ oh well.
         html=(
             <div class='row contentCard'>
                 <div class='col-4 contentCard-left d-flex flex-column'>
@@ -47,7 +97,9 @@ class SingleContent extends Component
                     <div class="row fs-6 justify-content-center">Tag: {this.state.movieInfo[0].tag}</div>
 
                     {/*Este botão aqui! ainda não faz nada :^)*/}
-                    <div clas = "row fs-6 justify-content-center"><button type="submit" class="btn btn-secondary">Adicionar à biblioteca</button></div>
+                    <div clas = "row fs-6 justify-content-center">
+                        <button type="submit" class="btn btn-secondary" onClick = {() => this.addFavorito(this.state.contentId, this.state.loggedUser)}>Adicionar à biblioteca</button>
+                    </div>
                 </div>
                 <div class='col contentCard-right'>
                     <div class="row m-2 mb-3">Sinopse:</div>

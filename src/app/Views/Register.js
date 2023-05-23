@@ -22,18 +22,26 @@ class Register extends Component
 
             if(response.ok){
                 console.log("SUCESSO");
+                window.location.href='/'
             }
             else{
+                //limpa os campos
+                document.getElementById('username').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('password').value = '';
+
+                //mostra a mensagem de erro no placeholder de cada campo
+                document.getElementById('username').placeholder = 'Tente novamente...';
+                document.getElementById('email').placeholder = 'Tente novamente...';
+                document.getElementById('password').placeholder = 'Tente novamente...';
                 console.log("ERRO ", data);
             }
         }
         catch(error){
             console.log('Error:', error);
         }
-        window.location.href='/'
     }
     
-
     render(){
         return(
             <div class = "fixed-top container-fluid  p-0">
