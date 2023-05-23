@@ -21,7 +21,7 @@ class UserPage extends Component{
           };
 
          // Make the fetch request
-         await fetch('https://localhost:7110/api/ConteudosAPI/getuser', requestOptions)
+         await fetch('/api/ConteudosAPI/getuser', requestOptions)
          .then(res => res.json())
          .then(result => this.setState({loggedUser: result.value}))
          .catch(error => console.log('error', error));
@@ -40,7 +40,7 @@ class UserPage extends Component{
         };
 
         try {
-            const response = await fetch('https://localhost:7110/api/ConteudosAPI/logout', requestOptions);
+            const response = await fetch('/api/ConteudosAPI/logout', requestOptions);
 
             if (response.ok) {
                 console.log('Logout successful');

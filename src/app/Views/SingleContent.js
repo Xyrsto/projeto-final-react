@@ -27,7 +27,7 @@ class SingleContent extends Component
             }
         };
 
-        await fetch('https://localhost:7110/api/ConteudosAPI/'+this.state.contentId, requestOptions)
+        await fetch('/api/ConteudosAPI/'+this.state.contentId, requestOptions)
             .then(res => res.json())
             .then(result => this.setState({movieInfo: result.value}))
     }

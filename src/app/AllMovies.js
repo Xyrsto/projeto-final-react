@@ -20,7 +20,7 @@ class AllMovies extends Component
             }
         };
 
-        await fetch('https://localhost:7110/api/ConteudosAPI/filmes', requestOptions)
+        await fetch('/api/ConteudosAPI/filmes', requestOptions)
             .then(res => res.json())
             .then(result => this.setState({listaFilmes: result.value}))
             .catch(error => console.log('error', error));
@@ -35,7 +35,7 @@ class AllMovies extends Component
             }
         };
 
-        await fetch('https://localhost:7110/api/ConteudosAPI/filmes/'+tag, requestOptions)
+        await fetch('/api/ConteudosAPI/filmes/'+tag, requestOptions)
             .then(res => res.json())
             .then(result => this.setState({listaFilmes: result.value}))
             .catch(error => console.log('error', error));
@@ -52,7 +52,7 @@ class AllMovies extends Component
             }
         };
 
-        await fetch('https://localhost:7110/api/ConteudosAPI/nomeTags', requestOptions)
+        await fetch('/api/ConteudosAPI/nomeTags', requestOptions)
             .then(res => res.json())
             .then(result => this.setState({listaTags: result.value}))
 

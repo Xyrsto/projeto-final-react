@@ -17,7 +17,7 @@ class Login extends Component
           };
         
           try {
-            const response = await fetch('https://localhost:7110/api/ConteudosAPI/login', requestOptions);
+            const response = await fetch('/api/ConteudosAPI/login', requestOptions);
             const data = await response.json();
         
             if (response.ok) 

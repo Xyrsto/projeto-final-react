@@ -20,7 +20,7 @@ class AllSeries extends Component
             }
         };
 
-        await fetch('https://localhost:7110/api/ConteudosAPI/series', requestOptions)
+        await fetch('/api/ConteudosAPI/series', requestOptions)
             .then(res => res.json())
             .then(result => this.setState({listaSeries: result.value}))
             .catch(error => console.log('error', error));
@@ -38,7 +38,7 @@ class AllSeries extends Component
             }
         };
 
-        await fetch('https://localhost:7110/api/ConteudosAPI/nomeTags', requestOptions)
+        await fetch('/api/ConteudosAPI/nomeTags', requestOptions)
             .then(res => res.json())
             .then(result => this.setState({listaTags: result.value}))
             .catch(error => console.log('error', error));

@@ -17,7 +17,7 @@ class Register extends Component
         };
 
         try{
-            const response = await fetch ('https://localhost:7110/api/ConteudosAPI/register', requestOptions);
+            const response = await fetch ('/api/ConteudosAPI/register', requestOptions);
             const data = await response.json();
 
             if(response.ok){
