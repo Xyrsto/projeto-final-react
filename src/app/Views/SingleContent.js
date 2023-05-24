@@ -49,7 +49,7 @@ class SingleContent extends Component
          .then(res => res.json())
          .then(result => this.setState({loggedUser: result.value}))
          .catch(error => console.log('error', error));
-         console.log(this.state.loggedUser);
+
     }
 
 

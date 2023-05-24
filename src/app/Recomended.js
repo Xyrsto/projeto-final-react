@@ -3,6 +3,45 @@ import './TopBar.css';
 
 class Recomended extends Component
 {
+    state = {loggedUser:"", listaRecs: {}}
+    async componentDidMount(){
+        await this.getUser();
+        await this.getRecomendados();
+    }
+
+    async getUser(){
+            var requestOptions = {
+            method: 'GET',
+            credentials: 'include',
+            header:{
+                'Access-Control-Allow-Origin':'*'
+            }
+          };
+
+         // Make the fetch request
+         await fetch('/api/ConteudosAPI/getuser', requestOptions)
+         .then(res => res.json())
+         .then(result => this.setState({loggedUser: result.value}))
+         .catch(error => console.log('error', error));
+    }
+
+    async getRecomendados(){
+        var requestOptions = {
+            method: 'GET',
+            header:{
+                'Access-Control-Allow-Origin':'*'
+            }
+          };
+
+          // Make the fetch request
+         await fetch('/api/ConteudosAPI/recomendados/'+this.state.loggedUser, requestOptions)
+         .then(res => res.json())
+         .then(result => this.setState({listaRecs: result.value}))
+         .catch(error => console.log('error', error));
+
+         console.log(this.state.listaRecs);
+    }
+
     render(){
         return(
             <div class = "row pt-4 pt-5">
