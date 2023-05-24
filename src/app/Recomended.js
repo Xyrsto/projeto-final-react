@@ -3,10 +3,10 @@ import './TopBar.css';
 
 class Recomended extends Component
 {
-    state = {loggedUser:"", listaRecs: {}}
+    state = {loggedUser:"", listaRecs: [], listaFilmes: []}
     async componentDidMount(){
         await this.getUser();
-        await this.getRecomendados();
+        this.getRecomendados();
     }
 
     async getUser(){
@@ -28,18 +28,41 @@ class Recomended extends Component
     async getRecomendados(){
         var requestOptions = {
             method: 'GET',
+            redirect: 'follow',
+            inclues: 'credentials',
             header:{
                 'Access-Control-Allow-Origin':'*'
             }
           };
 
+          const url = `api/ConteudosAPI/recs/${this.state.loggedUser}`;
+          console.log(url);
           // Make the fetch request
-         await fetch('/api/ConteudosAPI/recomendados/'+this.state.loggedUser, requestOptions)
-         .then(res => res.json())
-         .then(result => this.setState({listaRecs: result.value}))
-         .catch(error => console.log('error', error));
+          await fetch(url, requestOptions)
+          .then(res => res.json())
+          .then(result => this.setState({listaRecs: result.value}))
+          .catch(error => console.log('error', error));
+    }
 
-         console.log(this.state.listaRecs);
+    async buscarFilme(id){
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow',
+            header:{
+                'Access-Control-Allow-Origin':'*'
+            }
+        };
+
+        await fetch('/api/ConteudosAPI/'+id, requestOptions)
+            .then(res => res.json())
+            .then(result => this.setState((listaFilmes) => {
+                const newArray = [...listaFilmes.array];
+                newArray.push(result.value);
+                return { array: newArray };
+            }))
+            .catch(error => console.log('error', error));
+
+        
     }
 
     render(){
