@@ -88,7 +88,6 @@ class AllMovies extends Component
         let htmlDivs = []
         let filmeDiv = ''
         
-        //let htmlFilmes = this.htmlFilmes();
         this.state.listaTags.forEach(element => { 
             filmeDiv = this.htmlFilmes(element.nome)
             htmlDivs.push(

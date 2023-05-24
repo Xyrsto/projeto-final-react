@@ -3,10 +3,9 @@ import './TopBar.css';
 
 class Recomended extends Component
 {
-    state = {loggedUser:"", listaRecs: [], listaFilmes: []}
+    state = {loggedUser:"", listaRecs: [], listaFilmes: [], didFetch: false, htmlCont: []}
     async componentDidMount(){
-        await this.getUser();
-        this.getRecomendados();
+
     }
 
     async getUser(){
@@ -35,13 +34,19 @@ class Recomended extends Component
             }
           };
 
-          const url = `api/ConteudosAPI/recs/${this.state.loggedUser}`;
-          console.log(url);
-          // Make the fetch request
-          await fetch(url, requestOptions)
-          .then(res => res.json())
-          .then(result => this.setState({listaRecs: result.value}))
-          .catch(error => console.log('error', error));
+          while(this.state.listaRecs.length == 0){
+            const loggedUser = this.state.loggedUser
+            const url = "api/ConteudosAPI/recs/"+this.state.loggedUser;
+            console.log(url);
+            // Make the fetch request
+            await fetch(url, requestOptions)
+            .then(res => res.json())
+            .then(result => this.setState({listaRecs:result.value}))
+            .catch(error => console.log('error', error));
+          }
+
+          this.setState({didFetch: true});
+          console.log(this.state.listaRecs);
     }
 
     async buscarFilme(id){
@@ -53,26 +58,58 @@ class Recomended extends Component
             }
         };
 
-        await fetch('/api/ConteudosAPI/'+id, requestOptions)
+        await fetch('/api/ConteudosAPI/conteudo/'+id, requestOptions)
             .then(res => res.json())
-            .then(result => this.setState((listaFilmes) => {
-                const newArray = [...listaFilmes.array];
-                newArray.push(result.value);
-                return { array: newArray };
-            }))
+            .then(result => {
+                // Verifica se o filme já foi adicionado á listaFilmes, se não foi então adiciona
+                if(!this.state.listaFilmes.find(e => e.id == result.value[0].id)){
+                    this.state.listaFilmes.push(result.value[0])
+                }
+                
+            })
             .catch(error => console.log('error', error));
-
-        
     }
 
+        //esta função gera o div para cada filme. Ainda não gera dependedo da tag.
+        htmlFilmes()
+        {
+            let htmlFilmes = []
+    
+            this.state.listaFilmes.forEach(element => { 
+                htmlFilmes.push(
+                    <a class="filmeHref" href={`/conteudos/`+element.id}>
+                        <div class="filmeCard">
+                            <img class = "filmes" alt = "filme" src = { element.imgUrl } title={element.nome}/>
+                            <div class="filme-overlay">
+                                <strong>{element.nome}</strong>
+                                <span class="position-absolute bottom-0 fs-5 mb-2" style={{left: "0px", right: "0px"}}>{element.rating}</span>
+                            </div>
+                        </div>
+                    </a>
+                ) 
+            }
+            );
+
+            this.setState({htmlCont: htmlFilmes}) ;
+        }
+
+
     render(){
+        if(!this.state.didFetch){
+            this.getUser();
+            this.getRecomendados();
+            this.state.listaRecs.forEach(rec => {
+                this.buscarFilme(rec[0])
+            });
+        }
+        //this.htmlFilmes();
+
+        console.log(this.state.listaFilmes);
         return(
             <div class = "row pt-4 pt-5">
                 <h1 class = "loginRegisterFont">Recomended</h1>
                 <div className = "filme" class = "text-center">
-                    <img class = "filmes" alt = "filme" src = "https://cdn.shopify.com/s/files/1/0057/3728/3618/products/scream-vi_bevzvyks_480x.progressive.jpg?v=1676559336"></img>
-                    <img class = "filmes" alt = "filme" src = "https://cdn.shopify.com/s/files/1/0057/3728/3618/products/4c177c2b7f7bb9a679f089bcb50f844e_3e89eb5d-ffbd-4033-a00f-e595a3ef2e2a_240x360_crop_center.progressive.jpg?v=1573587540"></img>
-                    <img class = "filmes" alt = "filme" src = "https://sm.ign.com/t/ign_za/gallery/s/spider-man/spider-man-far-from-home-official-movie-posters_ex7e.1080.jpg"></img>
+                    {this.state.htmlCont}  
                 </div>
             </div>
         )
