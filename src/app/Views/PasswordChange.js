@@ -24,7 +24,6 @@ class PasswordChange extends Component{
             {
               console.log('successful');
               window.location.href='/login';
-              // Perform any additional actions after successful login
             } 
             else 
             {
@@ -55,7 +54,7 @@ class PasswordChange extends Component{
                             <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter username"></input>                    
                         </div>
                         <div class = "form-group pt-5 pb-5">
-                            <h3 class = "loginRegisterFont">Password</h3>    
+                            <h3 class = "loginRegisterFont">New password</h3>    
                             <input type="password" class="form-control" id="password" aria-describedby="emailHelp" placeholder="Enter new password"></input>                    
                         </div>
                         <button type="submit" class="btn btn-secondary" onClick={() => this.passwordChange("",document.getElementById('email').value, document.getElementById('password').value)}>Mudar password</button>
