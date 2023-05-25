@@ -3,7 +3,7 @@ import './TopBar.css';
 
 class Recomended extends Component
 {
-    state = {loggedUser:"", listaRecs: [], listaFilmes: [], didFetch: false, htmlCont: []}
+    state = {loggedUser:"", listaRecs: [], listaFilmes: [], didFetch: false, didDraw: false, emptyRecs: false, htmlCont: []}
     async componentDidMount(){
 
     }
@@ -34,19 +34,29 @@ class Recomended extends Component
             }
           };
 
-          while(this.state.listaRecs.length == 0){
-            const loggedUser = this.state.loggedUser
-            const url = "api/ConteudosAPI/recs/"+this.state.loggedUser;
-            console.log(url);
-            // Make the fetch request
-            await fetch(url, requestOptions)
-            .then(res => res.json())
-            .then(result => this.setState({listaRecs:result.value}))
-            .catch(error => console.log('error', error));
-          }
 
-          this.setState({didFetch: true});
-          console.log(this.state.listaRecs);
+        const loggedUser = this.state.loggedUser
+        const url = "api/ConteudosAPI/recs/"+this.state.loggedUser;
+        console.log(url);
+        // Make the fetch request
+        await fetch(url, requestOptions)
+        .then(res => res.json())
+        .then(result => {
+            if(result.statusCode == 404){
+                this.setState({emptyRecs: true})
+            }
+            this.setState({listaRecs:result.value})
+        })
+        .catch(error => console.log('error', error));
+        
+        if(!this.state.emptyRecs){
+            if(this.state.listaRecs.length != 0){
+                this.setState({didFetch: true});
+            }
+        }else{
+            this.setState({didFetch: true});
+        }
+        
     }
 
     async buscarFilme(id){
@@ -91,18 +101,25 @@ class Recomended extends Component
             );
 
             this.setState({htmlCont: htmlFilmes}) ;
+            this.setState({didDraw: true})
         }
 
 
     render(){
-        if(!this.state.didFetch){
+        if(!this.state.didFetch && this.state.loggedUser != undefined){
             this.getUser();
             this.getRecomendados();
-            this.state.listaRecs.forEach(rec => {
-                this.buscarFilme(rec[0])
-            });
+
+            if(!this.state.emptyRecs){
+                this.state.listaRecs.forEach(rec => {
+                    this.buscarFilme(rec[0])
+                });
+            }
+            
+        }else if(!this.state.didDraw){
+            this.htmlFilmes();
         }
-        //this.htmlFilmes();
+
 
         console.log(this.state.listaFilmes);
         return(
