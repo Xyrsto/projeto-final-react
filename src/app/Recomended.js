@@ -34,7 +34,7 @@ class Recomended extends Component
             }
           };
 
-          while(this.state.listaRecs.length == 0){
+          /*while(this.state.listaRecs.length == 0){
             const loggedUser = this.state.loggedUser
             const url = "api/ConteudosAPI/recs/"+this.state.loggedUser;
             console.log(url);
@@ -43,7 +43,7 @@ class Recomended extends Component
             .then(res => res.json())
             .then(result => this.setState({listaRecs:result.value}))
             .catch(error => console.log('error', error));
-          }
+          }*/
 
           this.setState({didFetch: true});
           console.log(this.state.listaRecs);
