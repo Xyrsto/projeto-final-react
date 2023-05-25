@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import '../TopBar.css';
 import TopBar from '../TopBar';
+import {Link} from 'react-router-dom';
+
 
 
 class Login extends Component 
@@ -54,6 +56,7 @@ class Login extends Component
                             <input type="password" class="form-control" id="password" aria-describedby="emailHelp" placeholder="Enter password"></input>                    
                         </div>
                         <button type="submit" class="btn btn-secondary" onClick={() => this.login("",document.getElementById('email').value, document.getElementById('password').value)}>Login!</button>
+                        <Link to = "/passwordChange" style = {{textDecoration: "none"}}><h3 class = "password"  >Esqueceu-se da password?</h3></Link>
                     </div>
                 </div>                  
             </div>

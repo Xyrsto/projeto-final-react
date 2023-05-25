@@ -34,7 +34,6 @@ class Recomended extends Component
             }
           };
 
-
         const loggedUser = this.state.loggedUser
         const url = "api/ConteudosAPI/recs/"+this.state.loggedUser;
         console.log(url);
