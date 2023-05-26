@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './TopBar.css';
 
+//classe que contém todos as series. É chamada na página de series.
 class AllSeries extends Component 
 {
     state = { listaSeries: [], listaTags: [], htmlCont: []}
@@ -11,6 +12,7 @@ class AllSeries extends Component
         this.generateDivs();
     }
 
+    //GET para buscar todas as séries à BD
     async buscarSeries(){
         var requestOptions = {
             method: 'GET',
@@ -28,6 +30,7 @@ class AllSeries extends Component
         console.log(this.state.listaSeries);
     }
 
+    //GET para buscar todas as tags à BD
     async buscarTags()
     {
         var requestOptions = {
@@ -55,14 +58,16 @@ class AllSeries extends Component
         this.state.listaSeries.forEach(element => {
             if(element.tag === tagFilter){
                 htmlSeries.push(
-                    <div class="filmeCard">
-                        <img class = "filmes" alt = "filme" src = { element.imgUrl } title={element.nome}/>
-                        <div class="filme-overlay">
-                            <strong>{element.nome}</strong>
-                            <span class="position-absolute bottom-0 fs-5 mb-2" style={{left: "0px", right: "0px"}}>{element.rating}</span>
+                    <a class="filmeHref" href={`/conteudos/`+element.id}>
+                        <div class="filmeCard">
+                            <img class = "filmes" alt = "filme" src = { element.imgUrl } title={element.nome}/>
+                            <div class="filme-overlay">
+                                <strong>{element.nome}</strong>
+                                <span class="position-absolute bottom-0 fs-5 mb-2" style={{left: "0px", right: "0px"}}>{element.rating}</span>
+                            </div>
                         </div>
-                    </div>
-                )
+                    </a>
+                ) 
             }}
         );
 

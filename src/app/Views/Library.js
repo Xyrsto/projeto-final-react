@@ -4,6 +4,7 @@ import TopBar from '../TopBar';
 
 class Library extends Component 
 {
+    //página de favoritos para cada utilizador(ainda não está concluída)
     render(){
         return(
             <div class = "fixed-top container-fluid  p-0" style={{maxHeight:"100%"}}>

@@ -8,6 +8,7 @@ class Recomended extends Component
 
     }
 
+    //GET para ir buscar o utilizador logado ao servidor e atualizar o estado com o utilizador.
     async getUser(){
             var requestOptions = {
             method: 'GET',
@@ -24,6 +25,7 @@ class Recomended extends Component
          .catch(error => console.log('error', error));
     }
 
+    //GET para receber os recomendados do utilizador
     async getRecomendados(){
         var requestOptions = {
             method: 'GET',
@@ -58,6 +60,7 @@ class Recomended extends Component
         
     }
 
+    //GET para ir buscar o filme ao servidor e atualizar o estado com o filme.
     async buscarFilme(id){
         var requestOptions = {
             method: 'GET',

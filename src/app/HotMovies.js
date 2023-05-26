@@ -26,6 +26,7 @@ class HotMovies extends Component
             .catch(error => console.log('error', error));
     }
 
+    //gera os divs com os filmes
     htmlFilmes()
     {
         let htmlFilmes = []
@@ -47,8 +48,6 @@ class HotMovies extends Component
                 }               
             }
         );
-
-
         console.log(htmlFilmes);
         this.setState({htmlCont: htmlFilmes})
     }

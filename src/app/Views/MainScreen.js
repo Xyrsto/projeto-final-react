@@ -4,6 +4,7 @@ import HotMovies from '../HotMovies.js';
 import TopBar from '../TopBar.js';
 import Recomended from '../Recomended.js';
 
+//classe da página principal da aplicação. Contém os componentes TopBar, HotMovies e Recomended
 class MainScreen extends Component
 {    
     render()

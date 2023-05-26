@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../TopBar.css';
 import TopBar from '../TopBar';
 
+//página de conteúdo individual. Contém o componente TopBar e o componente SingleContent.
 class SingleContent extends Component 
 { 
     state = { contentId: "", movieInfo: {}, htmlCont: '', loggedUser: ''}
@@ -96,7 +97,7 @@ class SingleContent extends Component
                     <div class="row fs-6 justify-content-center">Rating: {this.state.movieInfo[0].rating}</div>
                     <div class="row fs-6 justify-content-center">Tag: {this.state.movieInfo[0].tag}</div>
 
-                    {/*Este botão aqui! ainda não faz nada :^)*/}
+                    {/*Este botão aqui! Já funciona!*/}
                     <div clas = "row fs-6 justify-content-center">
                         <button type="submit" class="btn btn-secondary" onClick = {() => this.addFavorito(this.state.contentId, this.state.loggedUser)}>Adicionar à biblioteca</button>
                     </div>

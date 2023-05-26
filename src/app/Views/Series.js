@@ -3,7 +3,7 @@ import '../TopBar.css';
 import TopBar from '../TopBar';
 import AllSeries from '../AllSeries';
 
-
+//página de séries. Contém o componente TopBar e o componente AllSeries
 class Series extends Component 
 {
     render(){

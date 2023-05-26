@@ -3,7 +3,7 @@ import './TopBar.css';
 import {Link} from 'react-router-dom';
 
 
-
+//esta classe contém a barra de navegação da aplicação. É chamada em todas as páginas.
 class TopBar extends Component
 {    
     state = { loggedUser: ''}
@@ -22,7 +22,6 @@ class TopBar extends Component
             }
           };
 
-         // Make the fetch request
          await fetch('/api/ConteudosAPI/getuser', requestOptions)
          .then(res => res.json())
          .then(result => this.setState({loggedUser: result.value}))
@@ -30,6 +29,7 @@ class TopBar extends Component
          console.log(this.state.loggedUser);
     }
 
+    //aqui é gerada a navbar da aplicação. cada elemento da barra pode ser clicado e redireciona para a página correspondente ao identificador, utilizando os links.
     render()
     {
         return(
@@ -40,17 +40,17 @@ class TopBar extends Component
                             <div class="col-4 p-2 m-1 small">
                                 {window.location.href.includes('movies') 
                                     ?
-                                    <Link to = '/movies' style={{ textDecoration: 'none', color: 'red', borderBottom: '1px solid red'}}><span id = "movieSpan" class = "activePage">Movies</span></Link>
+                                    <Link to = '/movies' style={{ textDecoration: 'none', color: 'red', borderBottom: '1px solid red'}}><span id = "movieSpan" class = "activePage">Filmes</span></Link>
                                     :
-                                    <Link to = '/movies' style={{ textDecoration: 'none', color: 'white'}}><span id = "movieSpan" class = "activePage">Movies</span></Link>             
+                                    <Link to = '/movies' style={{ textDecoration: 'none', color: 'white'}}><span id = "movieSpan" class = "activePage">Filmes</span></Link>             
                                 }                  
                             </div>
                             <div class="col-4 p-2 m-1 small border-start">
                                 {window.location.href.includes('series') 
                                     ?
-                                    <Link to = '/series' style={{ textDecoration: 'none', color: 'red', borderBottom: '1px solid red'}}><span class = "activePage">Series</span></Link>
+                                    <Link to = '/series' style={{ textDecoration: 'none', color: 'red', borderBottom: '1px solid red'}}><span class = "activePage">Séries</span></Link>
                                     :
-                                    <Link to = '/series' style={{ textDecoration: 'none', color: 'white'}}><span class = "activePage">Series</span></Link>
+                                    <Link to = '/series' style={{ textDecoration: 'none', color: 'white'}}><span class = "activePage">Séries</span></Link>
                                 }       
                             </div>  
                         </div>                              
@@ -73,9 +73,9 @@ class TopBar extends Component
                                     <div class="col-4 p-2 m-1 small border-start">
                                         {window.location.href.includes('register') 
                                         ?
-                                        <Link to = '/register' style={{ textDecoration: 'none', color: 'red', borderBottom: '1px solid red'}}><span class = "activePage">Register</span></Link>
+                                        <Link to = '/register' style={{ textDecoration: 'none', color: 'red', borderBottom: '1px solid red'}}><span class = "activePage">Registar</span></Link>
                                         :
-                                        <Link to = '/register' style={{ textDecoration: 'none', color: 'white'}}><span class = "activePage">Register</span></Link>
+                                        <Link to = '/register' style={{ textDecoration: 'none', color: 'white'}}><span class = "activePage">Registar</span></Link>
                                         }
                                     </div>
                                 </div>
@@ -93,9 +93,9 @@ class TopBar extends Component
                                 <div class="col-4 p-2 m-1 small border-start">
                                     {window.location.href.includes('library') 
                                     ?
-                                    <Link to = '/library' style={{ textDecoration: 'none', color: 'red', borderBottom: '1px solid red'}}><span class = "activePage">Library</span></Link>
+                                    <Link to = '/library' style={{ textDecoration: 'none', color: 'red', borderBottom: '1px solid red'}}><span class = "activePage">Biblioteca</span></Link>
                                     :
-                                    <Link to = '/library' style={{ textDecoration: 'none', color: 'white'}}><span class = "activePage">Library</span></Link>
+                                    <Link to = '/library' style={{ textDecoration: 'none', color: 'white'}}><span class = "activePage">Biblioteca</span></Link>
                                     }
                                 </div>    
                             </div>

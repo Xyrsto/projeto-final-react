@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './TopBar.css';
 
+//classe que contém todos os filmes. É chamada na página de filmes.
 class AllMovies extends Component 
 {
     state = { listaFilmes: [], listaTags: [], htmlCont: []}

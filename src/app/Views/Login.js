@@ -30,6 +30,8 @@ class Login extends Component
             else 
             {
               console.log('Login failed', data);
+
+              //Limpar os campos de input
               document.getElementById("email").value = "";
               document.getElementById("password").value = "";
               document.getElementById("email").placeholder = "Erro! Tente Novamente";
@@ -41,6 +43,7 @@ class Login extends Component
           }
     }
     
+    //render da página de login. o link da linha 63 redireciona para a página de mudar password
     render(){        
         return(
             <div class = "fixed-top container-fluid  p-0">

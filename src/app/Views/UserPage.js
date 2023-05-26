@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../TopBar.css';
 import TopBar from '../TopBar';
 
-
+//página pessoal para cada utilizador.
 class UserPage extends Component{
     state = { loggedUser: ''}
 

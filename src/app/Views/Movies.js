@@ -3,7 +3,7 @@ import '../TopBar.css';
 import TopBar from '../TopBar';
 import AllMovies from '../AllMovies';
 
-
+//página de filmes. Contém o componente TopBar e o componente AllMovies
 class Movies extends Component 
 {
     render(){
