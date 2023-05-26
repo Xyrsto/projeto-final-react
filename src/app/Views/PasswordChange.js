@@ -7,39 +7,25 @@ class PasswordChange extends Component{
 
     async passwordChange(username, password)
     {
-        var requestOptions = {
-            method: 'PUT',
-            credentials: 'include',
-            headers:{
-                'Access-Control-Allow-Origin':'*',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({username, password})
-          };
-          try {
-            const response = await fetch('/api/ConteudosAPI/passwordChange', requestOptions);
-            const data = await response.json();
-        
-            if (response.ok) 
-            {
-              console.log('successful');
-              window.location.href='/login';
-            } 
-            else 
-            {
-              console.log('failed', data);
-              document.getElementById('username').value = '';
-              document.getElementById('password').value = '';
-
-              document.getElementById('username').placeholder = 'Erro';
-              document.getElementById('password').placeholder = 'Erro';
-              // Handle login failure, display error message, etc.
-            }
-          } 
-          catch (error) {
-            console.log('Error:', error);
-            // Handle network or other errors
-          }
+      try {
+        const response = await fetch('/api/ConteudosAPI/passwordChange', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin':'*'
+          },
+          body: JSON.stringify({ username, password }),
+        });
+    
+        if (response.ok) {
+          console.log('Password updated successfully');
+        } else {
+          const errorResponse = await response.json();
+          console.error('Failed to update password:', errorResponse);
+        }
+      } catch (error) {
+        console.error('Error occurred while updating password:', error);
+      }
     }
 
     render(){
@@ -57,7 +43,7 @@ class PasswordChange extends Component{
                             <h3 class = "loginRegisterFont">New password</h3>    
                             <input type="password" class="form-control" id="password" aria-describedby="emailHelp" placeholder="Enter new password"></input>                    
                         </div>
-                        <button type="submit" class="btn btn-secondary" onClick={() => this.passwordChange("",document.getElementById('email').value, document.getElementById('password').value)}>Mudar password</button>
+                        <button type="submit" class="btn btn-secondary" onClick={() => this.passwordChange(document.getElementById('email').value, document.getElementById('password').value)}>Mudar password</button>
                     </div>
                 </div>   
             </div>            
