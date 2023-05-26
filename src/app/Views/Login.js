@@ -25,19 +25,20 @@ class Login extends Component
             if (response.ok) 
             {
               console.log('Login successful');
-              // Perform any additional actions after successful login
+              window.location.href='/' //Redirect para a homepage
             } 
             else 
             {
               console.log('Login failed', data);
-              // Handle login failure, display error message, etc.
+              document.getElementById("email").value = "";
+              document.getElementById("password").value = "";
+              document.getElementById("email").placeholder = "Erro! Tente Novamente";
+              document.getElementById("password").placeholder = "Erro! Tente Novamente";
             }
           } 
           catch (error) {
             console.log('Error:', error);
-            // Handle network or other errors
           }
-        window.location.href='/'
     }
     
     render(){        
