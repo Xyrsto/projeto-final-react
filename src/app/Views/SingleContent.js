@@ -53,6 +53,35 @@ class SingleContent extends Component
 
     }
 
+    //POST para adicionar um conteúdo à biblioteca de watch later de um utilizador
+    async addWatchLater(idFilme, username){
+        var formData = new FormData();
+        formData.append("idFilme", idFilme);
+        formData.append("username", username);
+
+        var requestOptions = {
+            method: 'POST',
+            redirect: 'follow',
+            body: formData
+        };
+        try
+        {
+            const response = await fetch('/api/ConteudosAPI/addWatchLater', requestOptions)
+            const data = await response.json();
+
+            if(response.ok){
+                console.log("SUCESSO");
+                window.location.href='/movies'
+            }
+            else{
+                console.log("ERRO ", data);
+            }
+        }
+        catch(error){
+            console.log('Error:', error);
+        }
+    }
+
 
     //POST para adicionar um conteúdo à biblioteca de favoritos de um utilizador
     async addFavorito(idFilme, username){
@@ -100,6 +129,9 @@ class SingleContent extends Component
                     {/*Este botão aqui! Já funciona!*/}
                     <div clas = "row fs-6 justify-content-center">
                         <button type="submit" class="btn btn-secondary" onClick = {() => this.addFavorito(this.state.contentId, this.state.loggedUser)}>Adicionar à biblioteca</button>
+                    </div>
+                    <div clas = "row fs-6 justify-content-center">
+                        <button type="submit" class="btn btn-secondary" onClick = {() => this.addWatchLater(this.state.contentId, this.state.loggedUser)}>Ver mais tarde</button>
                     </div>
                 </div>
                 <div class='col contentCard-right'>
