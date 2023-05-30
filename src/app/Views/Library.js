@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import '../TopBar.css';
 import TopBar from '../TopBar';
+import Favoritos from '../Favoritos';
+import WatchLaters from '../WatchLaters';
 
 class Library extends Component 
 {
@@ -13,6 +15,9 @@ class Library extends Component
                     <div class = "row" style={{maxHeight: "100%"}}>
                         <div class = "mt-3 pt-2 pb-3">
                             <h1 class = "loginRegisterFont">Favoritos</h1>
+                            <Favoritos/>
+                            <h1 class = "loginRegisterFont">WatchLater</h1>
+                            <WatchLaters/>
                         </div>
                     </div>
                 </div>

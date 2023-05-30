@@ -27,22 +27,6 @@ class AllMovies extends Component
             .catch(error => console.log('error', error));
     }
 
-    async buscarFilmesByTag(tag){
-        var requestOptions = {
-            method: 'GET',
-            redirect: 'follow',
-            header:{
-                'Access-Control-Allow-Origin':'*'
-            }
-        };
-
-        await fetch('/api/ConteudosAPI/filmes/'+tag, requestOptions)
-            .then(res => res.json())
-            .then(result => this.setState({listaFilmes: result.value}))
-            .catch(error => console.log('error', error));
-
-    }
-
     async buscarTags()
     {
         var requestOptions = {

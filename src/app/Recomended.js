@@ -3,9 +3,10 @@ import './TopBar.css';
 
 class Recomended extends Component
 {
-    state = {loggedUser:"", listaRecs: [], listaFilmes: [], didFetch: false, didDraw: false, emptyRecs: false, htmlCont: []}
+    state = {loggedUser:"", listaRecs: [], listaFilmes: [], htmlCont: []}
     async componentDidMount(){
-
+        await this.getUser();
+        await this.getRecomendados();
     }
 
     //GET para ir buscar o utilizador logado ao servidor e atualizar o estado com o utilizador.
@@ -36,32 +37,22 @@ class Recomended extends Component
             }
           };
 
-        const loggedUser = this.state.loggedUser
         const url = "api/ConteudosAPI/recs/"+this.state.loggedUser;
-        console.log(url);
         // Make the fetch request
         await fetch(url, requestOptions)
         .then(res => res.json())
         .then(result => {
-            if(result.statusCode == 404){
-                this.setState({emptyRecs: true})
-            }
-            this.setState({listaRecs:result.value})
+            this.state.listaRecs.push(result.value)
+            this.getFilmes()
         })
         .catch(error => console.log('error', error));
         
-        if(!this.state.emptyRecs){
-            if(this.state.listaRecs.length != 0){
-                this.setState({didFetch: true});
-            }
-        }else{
-            this.setState({didFetch: true});
-        }
+        
         
     }
 
     //GET para ir buscar o filme ao servidor e atualizar o estado com o filme.
-    async buscarFilme(id){
+    async getFilmes(){
         var requestOptions = {
             method: 'GET',
             redirect: 'follow',
@@ -70,16 +61,16 @@ class Recomended extends Component
             }
         };
 
-        await fetch('/api/ConteudosAPI/conteudo/'+id, requestOptions)
+        this.state.listaRecs[0].forEach(async contId => {
+            await fetch('api/conteudosApi/conteudo/'+contId, requestOptions)
             .then(res => res.json())
             .then(result => {
-                // Verifica se o filme já foi adicionado á listaFilmes, se não foi então adiciona
-                if(!this.state.listaFilmes.find(e => e.id == result.value[0].id)){
-                    this.state.listaFilmes.push(result.value[0])
-                }
+                this.state.listaFilmes.push(result.value)
+                this.htmlFilmes();
                 
             })
-            .catch(error => console.log('error', error));
+            .catch(error => console.log('error', error)); 
+        });
     }
 
         //esta função gera o div para cada filme. Ainda não gera dependedo da tag.
@@ -89,46 +80,28 @@ class Recomended extends Component
     
             this.state.listaFilmes.forEach(element => { 
                 htmlFilmes.push(
-                    <a class="filmeHref" href={`/conteudos/`+element.id}>
+                    <a class="filmeHref" href={`/conteudos/`+element[0].id}>
                         <div class="filmeCard">
-                            <img class = "filmes" alt = "filme" src = { element.imgUrl } title={element.nome}/>
+                            <img class = "filmes" alt = "filme" src = { element[0].imgUrl } title={element[0].nome}/>
                             <div class="filme-overlay">
-                                <strong>{element.nome}</strong>
+                                <strong>{element[0].nome}</strong>
                                 <span class="position-absolute bottom-0 fs-5 mb-2" style={{left: "0px", right: "0px"}}>{element.rating}</span>
                             </div>
                         </div>
                     </a>
                 ) 
-            }
-            );
+            });
 
             this.setState({htmlCont: htmlFilmes}) ;
-            this.setState({didDraw: true})
         }
 
 
     render(){
-        if(!this.state.didFetch && this.state.loggedUser != undefined){
-            this.getUser();
-            this.getRecomendados();
-
-            if(!this.state.emptyRecs){
-                this.state.listaRecs.forEach(rec => {
-                    this.buscarFilme(rec[0])
-                });
-            }
-            
-        }else if(!this.state.didDraw){
-            this.htmlFilmes();
-        }
-
-
-        console.log(this.state.listaFilmes);
         return(
             <div class = "row pt-4 pt-5">
                 <h1 class = "loginRegisterFont">Recomended</h1>
-                <div className = "filme" class = "text-center">
-                    {this.state.htmlCont}  
+                <div class="all_filmes d-flex justify-content-center">
+                    {this.state.htmlCont}
                 </div>
             </div>
         )
