@@ -64,22 +64,14 @@ class SingleContent extends Component
             redirect: 'follow',
             body: formData
         };
-        try
-        {
-            const response = await fetch('/api/ConteudosAPI/addWatchLater', requestOptions)
-            const data = await response.json();
 
-            if(response.ok){
-                console.log("SUCESSO");
-                window.location.href='/movies'
-            }
-            else{
-                console.log("ERRO ", data);
-            }
-        }
-        catch(error){
-            console.log('Error:', error);
-        }
+        await fetch('/api/ConteudosAPI/addWatchLater', requestOptions)
+        .then(res => res.json())
+        .then(result =>{
+        (result.value == "Add") ? window.alert('Conteudo adicionado aos á lista Watch Later') : window.alert('Conteudo removido da lista Watch Later')
+        } )
+        .catch(er => console.log('Error:', er));
+        
     }
 
 
@@ -94,22 +86,14 @@ class SingleContent extends Component
             redirect: 'follow',
             body: formData
         };
-        try
-        {
-            const response = await fetch('/api/ConteudosAPI/addFavorito', requestOptions)
-            const data = await response.json();
 
-            if(response.ok){
-                console.log("SUCESSO");
-                window.location.href='/movies'
-            }
-            else{
-                console.log("ERRO ", data);
-            }
-        }
-        catch(error){
-            console.log('Error:', error);
-        }
+        await fetch('/api/ConteudosAPI/addFavorito', requestOptions)
+        .then(res => res.json())
+        .then(result =>{
+            (result.value == "Add") ? window.alert('Conteudo adicionado aos favoritos') : window.alert('Conteudo removido dos favoritos')
+        } )
+        .catch(er => console.log('Error:', er));
+
     }
 
     async generateDivs(){
@@ -128,7 +112,7 @@ class SingleContent extends Component
 
                     {/*Este botão aqui! Já funciona!*/}
                     <div clas = "row fs-6 justify-content-center">
-                        <button type="submit" class="btn btn-secondary" onClick = {() => this.addFavorito(this.state.contentId, this.state.loggedUser)}>Adicionar à biblioteca</button>
+                        <button type="submit" class="btn btn-secondary" onClick = {() => this.addFavorito(this.state.contentId, this.state.loggedUser)}>Favorito</button>
                     </div>
                     <div clas = "row fs-6 justify-content-center">
                         <button type="submit" class="btn btn-secondary" onClick = {() => this.addWatchLater(this.state.contentId, this.state.loggedUser)}>Ver mais tarde</button>
