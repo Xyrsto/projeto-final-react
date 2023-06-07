@@ -48,14 +48,13 @@ class HotMovies extends Component
                 }               
             }
         );
-        console.log(htmlFilmes);
         this.setState({htmlCont: htmlFilmes})
     }
 
     render(){
         return(
             <div class = "row pt-4">
-                <h1 class = "loginRegisterFont">Hot Movies</h1>
+                <h1 class = "loginRegisterFont">Destaques</h1>
                 <div className = "filme" class = "text-center">
                     <div class="all_filmes d-flex justify-content-center">
                     {this.state.htmlCont}

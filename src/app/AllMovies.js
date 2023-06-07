@@ -12,6 +12,7 @@ class AllMovies extends Component
         this.generateDivs();
     }
 
+    // GET para ir buscar todos os filmes e os seus detalhes
     async buscarFilmes(){
         var requestOptions = {
             method: 'GET',
@@ -27,22 +28,7 @@ class AllMovies extends Component
             .catch(error => console.log('error', error));
     }
 
-    async buscarFilmesByTag(tag){
-        var requestOptions = {
-            method: 'GET',
-            redirect: 'follow',
-            header:{
-                'Access-Control-Allow-Origin':'*'
-            }
-        };
-
-        await fetch('/api/ConteudosAPI/filmes/'+tag, requestOptions)
-            .then(res => res.json())
-            .then(result => this.setState({listaFilmes: result.value}))
-            .catch(error => console.log('error', error));
-
-    }
-
+    // GET para ir buscar o nome de todas as tags
     async buscarTags()
     {
         var requestOptions = {
@@ -60,7 +46,7 @@ class AllMovies extends Component
         console.log('tags func: '+this.state.listaTags);
     }
 
-    //esta função gera o div para cada filme. Ainda não gera dependedo da tag.
+    //esta função gera o div para cada filme apenas se a sua tag corresponder à tag onde será a colocado.
     htmlFilmes(tagFilter)
     {
         let htmlFilmes = []
@@ -83,7 +69,7 @@ class AllMovies extends Component
         return htmlFilmes;
     }
 
-    //esta função gera os divs que contêm os filmes para cada nome de cada tag. Os filmes dentro deles ainda não estão filtrados por tag.
+    //esta função gera os divs que contêm os filmes para cada nome de cada tag.
     generateDivs()
     {
         let htmlDivs = []

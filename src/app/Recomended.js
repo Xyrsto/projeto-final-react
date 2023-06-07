@@ -122,11 +122,9 @@ class Recomended extends Component
             this.htmlFilmes();
         }
 
-
-        console.log(this.state.listaFilmes);
         return(
             <div class = "row pt-4 pt-5">
-                <h1 class = "loginRegisterFont">Recomended</h1>
+                <h1 class = "loginRegisterFont">Recomendados</h1>
                 <div className = "filme" class = "text-center">
                     {this.state.htmlCont}  
                 </div>
