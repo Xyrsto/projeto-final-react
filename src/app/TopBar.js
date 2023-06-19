@@ -24,7 +24,7 @@ class TopBar extends Component
 
          await fetch('/api/ConteudosAPI/getuser', requestOptions)
          .then(res => res.json())
-         .then(result => this.setState({loggedUser: result.value}))
+         .then(result => this.setState({loggedUser: this.trimUsername(result.value)}))
          .catch(error => console.log('error', error));
          console.log(this.state.loggedUser);
     }
@@ -37,6 +37,28 @@ class TopBar extends Component
             document.getElementById('infoDiv').style.opacity = '0'
         }
         
+    }
+    
+    trimUsername(email) {
+        if (email && email.trim().length > 0) {
+          const atIndex = email.indexOf('@');
+          
+          // verifica se existe @
+          if (atIndex !== -1) {
+            const username = email.substring(0, atIndex);
+            return username;
+          } 
+          else 
+          {
+            // se @não existe, o username é o email
+            return this.setState({loggedUser: email});
+          }
+        } 
+        else 
+        {
+          // trata de valores null
+          return '';
+        }
     }
 
     //aqui é gerada a navbar da aplicação. cada elemento da barra pode ser clicado e redireciona para a página correspondente ao identificador, utilizando os links.
@@ -93,13 +115,13 @@ class TopBar extends Component
                                 :
                                 <div class="row justify-content-end">
                                     <div class="col-6 p-2 m-1 small">
-                                    {window.location.href.includes('userpage') 
+                                    {window.location.href.includes('userpage')
                                         ?
-                                        <Link to = '/userpage' style={{ textDecoration: 'none', color: 'red', borderBottom: '1px solid red'}}><span class = "activePage">{this.state.loggedUser}</span></Link>
+                                        <Link to = '/userpage' style={{ textDecoration: 'none', color: 'red', borderBottom: '1px solid'}}><span class = "activePage">{this.state.loggedUser}</span></Link>
                                         :
                                         <Link to = '/userpage' style={{ textDecoration: 'none', color: 'white'}}><span class = "activePage">{this.state.loggedUser}</span></Link>
                                         }
-                                        <Link></Link>
+                                        
                                     </div>
                                     <div class="col-4 p-2 m-1 small border-start">
                                         {window.location.href.includes('library') 

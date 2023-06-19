@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../TopBar.css';
 import TopBar from '../TopBar';
-
+import {Link} from 'react-router-dom';
 //página pessoal para cada utilizador.
 class UserPage extends Component{
     state = { loggedUser: ''}
@@ -55,20 +55,54 @@ class UserPage extends Component{
         window.location.href = '/';
     }
 
+    trimUsername(email) {
+        const atIndex = email.indexOf('@');
+        
+        // verifica se existe @
+        if (atIndex !== -1) 
+        {
+          const username = email.substring(0, atIndex);
+          return username;
+        } 
+        else 
+        {
+          // se não existe, então assume que o email é o username
+          return email;
+        }
+    }
 
     render(){
-        return(
-            <div class = "fixed-top container-fluid  p-0">
-                <TopBar/>
-                <div class = "loginScreen">
-                    <div class = "loginBox">
-                        <img className = "profileImage" alt = "imagemUtilizador" src = "https://upload.wikimedia.org/wikipedia/commons/b/bc/Unknown_person.jpg"></img>
-                        <h1 className = "loginRegisterFont">{this.state.loggedUser}</h1>
-                        <button type="submit" class="btn btn-secondary" onClick = {() => this.logout()}>LogOut</button>
-                    </div>
-                </div>                                 
-            </div>           
-        )
+        if(this.trimUsername(this.state.loggedUser) !== "admin"){
+            return(
+                <div class = "fixed-top container-fluid  p-0">
+                    <TopBar/>
+                    <div class = "loginScreen">
+                        <div class = "loginBox">
+                            <img className = "profileImage" alt = "imagemUtilizador" src = "https://upload.wikimedia.org/wikipedia/commons/b/bc/Unknown_person.jpg"></img>
+                            <h1 className = "loginRegisterFont">{this.trimUsername(this.state.loggedUser)}</h1>
+                            <button type="submit" class="btn btn-secondary" onClick = {() => this.logout()}>LogOut</button>
+                        </div>
+                    </div>                                 
+                </div>           
+            )
+        }
+        else{
+            return(
+                <div class = "fixed-top container-fluid  p-0">
+                    <TopBar/>
+                    <div class = "loginScreen">
+                        <div class = "loginBox">
+                            <img className = "profileImage" alt = "imagemUtilizador" src = "https://upload.wikimedia.org/wikipedia/commons/b/bc/Unknown_person.jpg"></img>
+                            <h1 className = "loginRegisterFont">{this.trimUsername(this.state.loggedUser)}</h1>
+                            <div>
+                                <Link to = "/CreateContent"><button type="submit" class="btn btn-secondary">Adicionar Conteúdo</button></Link>
+                            </div>                            
+                            <button type="submit" class="btn btn-secondary" onClick = {() => this.logout()}>LogOut</button>
+                        </div>
+                    </div>                                 
+                </div>           
+            )
+        }       
     }
 }
 export default UserPage;

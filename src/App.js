@@ -9,6 +9,7 @@ import Library from './app/Views/Library.js';
 import UserPage from './app/Views/UserPage.js';
 import SingleContent from './app/Views/SingleContent.js';
 import PasswordChange from './app/Views/PasswordChange.js';
+import CreateContent from './app/Views/CreateContent.js'
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
             <Route path= "/userpage" element={<UserPage/>}/>
             <Route path= "/conteudos/*" element={<SingleContent/>}/>
             <Route path= "/passwordChange/*" element={<PasswordChange/>}/>
+            <Route path= "/CreateContent" element ={<CreateContent/>}/>
           </Routes>
         </Router>                 
       </header>
