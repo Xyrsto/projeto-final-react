@@ -92,7 +92,7 @@ class TopBar extends Component
                             <Link to = '/' style={{ textDecoration: 'none', color: 'white'}}><span class = "activePage">ShowSpot</span></Link>
                         </div>
                         <div class="col-2 text-end small align-self-center">
-                                {this.state.loggedUser == null 
+                                {this.state.loggedUser == '' 
                                 ?
                                     <div class="row justify-content-end">
                                         <div class="col-4 p-2 m-1 small">
